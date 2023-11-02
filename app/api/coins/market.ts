@@ -1,5 +1,4 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import { coin } from '@/lib/models/coinModel'
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
@@ -23,13 +22,14 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     const data: any = await response.json()
 
     // Process and filter the data as needed
-    const filteredData: coin = data.map((coin: any) => ({
-      name: <coin["name"]>coin.name,
-      symbol: <coin["symbol"]>coin.symbol,
-      currentPrice: <coin["currentPrice"]>coin.current_price,
-      high24h: <coin["high24h"]>coin.high_24h,
-      low24h: <coin["low24h"]>coin.low_24h,
-      priceChangePercentage24h: <coin["priceChangePercentage24h"]>coin.price_change_percentage_24h,
+    const filteredData = data.map((coin: any) => ({
+        id: <string>coin.id,    
+        name: <string>coin.name,
+        symbol: <string>coin.symbol,
+        currentPrice: <number>coin.current_price,
+        high24h: <number>coin.high_24h,
+        low24h: <number>coin.low_24h,
+        priceChangePercentage24h: <number>coin.price_change_percentage_24h,
     }))
 
     // Respond with the filtered data
