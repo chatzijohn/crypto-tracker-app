@@ -1,14 +1,18 @@
 /* Components */
 import { Providers } from '@/lib/providers'
 
-export default function RootLayout(props: React.PropsWithChildren) {
+export default function RootLayout({ children }: {children: React.ReactNode }) {
   return (
-    <Providers>
+
       <html lang="en">
         <body>
-            <main>{props.children}</main>
+          <main>
+            <Providers>
+                {children}
+            </Providers>
+          </main>
         </body>
       </html>
-    </Providers>
+
   )
 }
